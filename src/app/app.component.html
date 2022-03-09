@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script 
+		src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script 
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+  <div class="row">
+
+    <div class="col-xl-4">
+      <div class="contenedor">
+
+        <p>Ingresar los siguientes datos</p>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="pac.cedula" type="text" placeholder="Cedula">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="pac.nombre" placeholder="Nombre">    
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="pac.apellido" placeholder="Apellido">  
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="pac.edad" placeholder="Edad">  
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="pac.eps" placeholder="EPS">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <!-- <mat-label>Sintomas</mat-label> -->
+          <mat-select multiple>
+            <mat-option >Cuadro neurovegetativos</mat-option>
+            <mat-option >Trastornos de conciencia</mat-option>
+            <mat-option >Signos de deshidratación</mat-option>
+            <mat-option >Sepsis</mat-option>
+            <mat-option >Patologías agudas cardiovascular neurológica</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        
+
+
+        <button mat-raised-button color="primary" (click)="alta()">Agregar</button>        
+        <button mat-raised-button color="accent" (click)="modificacion()">Modificar</button>
+          
+      </div>
+    </div>
+
+    <div class="col-xl-8">
+      <div class="card-body">
+        <div class="table-responsive">
+          <h1>Administración de artículos</h1>
+          <table class="table table-striped table-hover" *ngIf="hayRegistros(); else sinarticulos">
+            <thead class="thead-dark">
+              <tr>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Borrar</th>
+                <th>Seleccionar</th>
+              </tr>
+            </thead>
+            
+            <tr *ngFor="let art of articulos">
+              <td>{{art.codigo}}</td>
+              <td>{{art.descripcion}}</td>
+              <td>{{art.precio}}</td>
+              <td><button mat-raised-button color="warn" (click)="baja(art.codigo)">Eliminar</button></td>
+              <td><button  mat-raised-button color="primary" (click)="seleccionar(art.codigo)">Seleccionar</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+
+
+  </div>
+</body>
+</html>
+  
+
+
+  <!-- <div>
+    <div>
+      <h1>Administración de artículos</h1>
+      <table border="1" *ngIf="hayRegistros(); else sinarticulos">
+        <tr>
+          <td>Codigo</td><td>Descripcion</td><td>Precio</td><td>Borrar</td><td>Seleccionar</td>
+        </tr>
+        <tr *ngFor="let art of articulos">
+          <td>{{art.codigo}}</td>
+          <td>{{art.descripcion}}</td>
+          <td>{{art.precio}}</td>
+          <td><button (click)="baja(art.codigo)">Borrar?</button></td>
+          <td><button (click)="seleccionar(art.codigo)">Seleccionar</button></td>
+        </tr>
+      </table>
+      
+      <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+      <div>
+        <p>
+          descripcion:<input type="text" [(ngModel)]="art.descripcion" />
+        </p>
+        <p>
+          precio:<input type="number" [(ngModel)]="art.precio" />
+        </p>
+        <p><button (click)="alta()">Agregar</button>
+          <button (click)="modificacion()">Modificar</button></p>
+      </div>
+    </div>
+    </div> -->
